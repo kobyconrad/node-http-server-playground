@@ -10,27 +10,46 @@ const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html");
 
-  if (req.url === "/") {
-    fs.readFile("mainpage.html", (err, data) => {
-      if (err) throw err;
-      res.write(data);
-      res.end();
-    });
-    return;
-  }
+  var pages = fs.readdirSync("./pages");
 
-  if (req.url === "/contact") {
-    fs.readFile("contact.html", (err, data) => {
-      if (err) throw err;
-      res.write(data);
-      res.end();
-    });
-    return;
-  }
+  req.url.toString();
+  req.url.substring(1);
+  var formattedUrl = req.url + ".html";
 
-  res.write("404 not found");
-  res.statusCode = 404;
-  res.end();
+  fs.readFile(`./pages/${formattedUrl}`, (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    res.write(data);
+    res.end();
+  });
+
+  console.log(pages);
+
+  //   if (req.url === "/") {
+  //     fs.readFile("mainpage.html", (err, data) => {
+  //       if (err) throw err;
+  //       res.write(data);
+  //       res.end();
+  //     });
+  //     return;
+  //   }
+
+  //   if (req.url === "/contact") {
+  //     fs.readFile("contact.html", (err, data) => {
+  //       if (err) throw err;
+  //       res.write(data);
+  //       res.end();
+  //     });
+  //     return;
+  //   }
+
+  //   res.write("404 not found");
+  //   res.statusCode = 404;
+
+  //   res.end();
 });
 
 // tells the server which port to listen to
