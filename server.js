@@ -10,13 +10,13 @@ const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "image/png");
 
-  fs.readFile("kobyscreen.png", (err, data) => {
-    if (err) throw err;
-    // console.log(data);
-    res.write(data);
+  //   fs.readFile("kobyscreen.png", (err, data) => {
+  //     if (err) throw err;
+  //     // console.log(data);
+  //     res.write(data);
 
-    res.end();
-  });
+  //     res.end();
+  //   });
 
   //   console.log(req);
 
